@@ -1,3 +1,23 @@
-.App {
-  text-align: center;
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.movie__block {
+  width: 300px;
+  height: 450px;
+  color: white;
+}
+
+.movie__block > img {
+  max-width: 100%;
+  max-height: 95%;
+}
+
+.movie__block > h3 {
+  max-width: 100%;
+  margin: 0;
 }
