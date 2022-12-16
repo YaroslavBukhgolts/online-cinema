@@ -1,15 +1,36 @@
+header {
+  width: 95%;
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 2em;
+}
+
+header > input {
+  background-color:rgb(39, 37, 87);
+  color: white;
+  padding: .5em 1em;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+}
+
 .movies {
   display: flex;
   flex-wrap: wrap;
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .movie__block {
   width: 300px;
-  height: 450px;
   color: white;
+  background-color: rgb(39, 37, 87);
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  margin: 1em 0.5em;
 }
 
 .movie__block > img {
@@ -18,6 +39,10 @@
 }
 
 .movie__block > h3 {
-  max-width: 100%;
-  margin: 0;
+  width: 100%;
+  margin: 10px 0;
+}
+
+input[type='btn'] {
+  cursor: pointer;
 }
