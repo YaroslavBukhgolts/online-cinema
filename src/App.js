@@ -2,6 +2,7 @@ import './App.css';
 import Movie from './components/Movie';
 import { useState, useEffect } from 'react';
 import NotFound from './components/NotFound';
+import { Spinner } from 'react-bootstrap';
 
 const movieApi = `https://imdb-api.com/en/API/SearchMovie/k_zi64id52/`; 
 const movieTop = `https://imdb-api.com/en/API/Top250Movies/k_zi64id52/`;
@@ -22,7 +23,7 @@ function App() {
     .then(res => {
       setMovie(res.items)
       setLoading(false)
-    });
+    })
   }, []);
 
   const onHandleSearch = (e) => {
@@ -31,9 +32,13 @@ function App() {
     fetch(movieApi + term)
       .then(res => res.json())
       .then(res => {
-        setMovie(res.results)
+        if(res.results.length !== 0){
+          setMovie(res.results)
+        } else {
+          setError(true)
+        }
         setLoading(false)
-      });
+      })
       setTerm('');
   }
 
@@ -43,6 +48,7 @@ function App() {
       .then(res => res.json())
       .then(res => {
         setMovie(res.items)
+        setError(false)
         setLoading(false)
       });
   }
@@ -57,7 +63,7 @@ function App() {
       <div className='movies'>
         {
         error ? <NotFound onNotFound={onNotFound}/> : 
-        (loading ? 'loading...' : movie.map((elem) => <Movie key={elem.id} {...elem}/>))
+        (loading ? <Spinner animation="border" variant="light" style={{width: '5rem', height:'5rem', position: 'absolute', top: '50%', left: '50%'}} /> : movie.map((elem) => <Movie key={elem.id} {...elem}/>))
         }
       </div>
     </>
